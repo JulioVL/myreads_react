@@ -7,23 +7,32 @@ import BookShelf from './BookShelf'
 
 class BooksApp extends Component {
   
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     books: []
-  //   };
-
-  // }
-
-  state = {
-    books: []
+  constructor() {
+    super();
+    this.state = {
+      books: []
+    };
+    this.changeShelf = this.changeShelf.bind(this);
   }
 
-  componentDidMount() {
+  getBooks() {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
   }
+
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  changeShelf(book, shelf) {
+    BooksAPI.update(book, shelf).then( () => {
+      book.shelf = shelf;
+
+      this.getBooks();
+    })
+  }
+
 
   render() {
     return (
@@ -31,6 +40,7 @@ class BooksApp extends Component {
         <Route exact path='/' render={() => (
           <BookShelf
             books={this.state.books}
+            changeShelf={this.changeShelf}
           />
         )}/>
         <Route path='/Search' render={() => (

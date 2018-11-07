@@ -5,7 +5,6 @@ import Book from './Book'
 class BookShelf extends Component {
 
   render() {
-    console.log(this.props.books);
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -21,7 +20,10 @@ class BookShelf extends Component {
                     .filter( (book) => book.shelf === "currentlyReading")
                     .map((book) => 
                       <li key={book.id}>
-                       <Book book={book} />
+                       <Book 
+                        book={book}
+                        changeShelf={this.props.changeShelf}
+                       />
                       </li>
                     )
                   }
@@ -36,7 +38,10 @@ class BookShelf extends Component {
                     .filter( (book) => book.shelf === "wantToRead")
                     .map((book) => 
                       <li key={book.id}>
-                       <Book book={book} />
+                       <Book 
+                        book={book}
+                        changeShelf={this.props.changeShelf}
+                       />
                       </li>
                     )
                   }
@@ -51,7 +56,10 @@ class BookShelf extends Component {
                     .filter( (book) => book.shelf === "read")
                     .map((book) => 
                       <li key={book.id}>
-                       <Book book={book} />
+                       <Book 
+                        book={book}
+                        changeShelf={this.props.changeShelf}
+                       />
                       </li>
                     )
                   }
