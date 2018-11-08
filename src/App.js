@@ -40,6 +40,8 @@ class BooksApp extends Component {
       BooksAPI.search(query).then( (books) => {
         this.setState({searchBooks: books});
       })
+    } else {
+      this.setState({searchBooks: []});
     }
   }
 
