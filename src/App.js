@@ -10,9 +10,11 @@ class BooksApp extends Component {
   constructor() {
     super();
     this.state = {
-      books: []
+      books: [],
+      searchBooks: []
     };
     this.changeShelf = this.changeShelf.bind(this);
+    this.queryResults = this.queryResults.bind(this);
   }
 
   getBooks() {
@@ -33,6 +35,14 @@ class BooksApp extends Component {
     })
   }
 
+  queryResults(query) {
+    if (query) {
+      BooksAPI.search(query).then( (books) => {
+        this.setState({searchBooks: books});
+      })
+    }
+  }
+
 
   render() {
     return (
@@ -44,7 +54,11 @@ class BooksApp extends Component {
           />
         )}/>
         <Route path='/Search' render={() => (
-          <Search />
+          <Search
+            searchBooks={this.state.searchBooks}
+            queryResults={this.queryResults}
+            changeShelf={this.changeShelf}
+          />
         )}/>
       </div>
     )
