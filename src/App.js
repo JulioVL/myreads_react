@@ -38,6 +38,12 @@ class BooksApp extends Component {
   queryResults(query) {
     if (query) {
       BooksAPI.search(query).then( (books) => {
+        books.forEach( (e1) => this.state.books.forEach( (e2) =>
+                        {if (e1.id === e2.id){
+                          e1.shelf = e2.shelf
+                        }
+                      }
+                    ) )
         this.setState({searchBooks: books});
       })
     } else {

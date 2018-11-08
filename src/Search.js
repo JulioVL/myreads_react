@@ -9,7 +9,6 @@ class Search extends Component {
   }
 
   render() {
-    console.log(this.props.searchBooks);
     return (
       <div>
         <div className="search-books">
