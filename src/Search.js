@@ -23,7 +23,7 @@ class Search extends Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {this.props.searchBooks
+              { (this.props.searchBooks.length) ? this.props.searchBooks
                 .map((book) => 
                   <li key={book.id}>
                    <Book 
@@ -31,7 +31,7 @@ class Search extends Component {
                     changeShelf={this.props.changeShelf}
                    />
                   </li>
-                )
+                ) : <li> No Results </li>
               }
             </ol>
           </div>

@@ -5,7 +5,7 @@ class Book extends Component {
   changeShelf(a, b) {
     this.props.changeShelf(a, b);
   }
-
+  
   render() {
     return (
       <div className="book">
